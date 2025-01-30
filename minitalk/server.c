@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ertugrullikos <ertugrullikos@student.42    +#+  +:+       +#+        */
+/*   By: rakman <rakman@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/30 01:25:29 by ertugrullik       #+#    #+#             */
-/*   Updated: 2025/01/30 01:25:30 by ertugrullik      ###   ########.fr       */
+/*   Created: 2025/01/30 01:25:29 by rakman            #+#    #+#             */
+/*   Updated: 2025/01/30 01:25:30 by rakman           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
