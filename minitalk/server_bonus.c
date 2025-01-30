@@ -1,55 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ertugrullikos <ertugrullikos@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/29 23:37:32 by ertugrullik       #+#    #+#             */
-/*   Updated: 2025/01/30 01:03:54 by ertugrullik      ###   ########.fr       */
+/*   Created: 2025/01/30 01:25:29 by ertugrullik       #+#    #+#             */
+/*   Updated: 2025/01/30 01:37:06 by ertugrullik      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-static void	send_char(t_pid pid, char c)
+void	process_signal(int signal)
 {
-	int	i;
+	static unsigned char	x;
+	static int				i;
 
-	i = 7;
-	while (i >= 0)
+	if (signal == SIGUSR1)
 	{
-		if ((c >> i) & 1)
-		{
-			kill(pid, SIGUSR1);
-		}
-		else
-		{
-			kill(pid, SIGUSR2);
-		}
-		usleep(150);
-		i--;
+		x = x | 1;
 	}
+	i++;
+	if (i == 8)
+	{
+		ft_printf("%c", x);
+		i = 0;
+		x = 0;
+	}
+	x = x << 1;
 }
 
-int main(int argc, char const *argv[])
+int main(void)
 {
-	t_pid	pid;
-	int		i;
-
-	if (argc != 3)
+	ft_printf("Server started with PID: %d\n", getpid());
+	signal(SIGUSR1, process_signal);
+	signal(SIGUSR2, process_signal);
+	while (1)
 	{
-		write(1, "Usage: ./client <PID> <MESSAGE>\n", 32);
-	}
-	else
-	{
-		pid = ft_atoi(argv[1]);
-		i = 0;
-		while (argv[2][i])
-		{
-			send_char(pid, argv[2][i]);
-			i++;
-		}
+		pause();
 	}
 	return (0);
 }

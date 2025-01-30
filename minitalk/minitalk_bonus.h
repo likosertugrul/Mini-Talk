@@ -1,44 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ertugrullikos <ertugrullikos@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/30 01:25:29 by ertugrullik       #+#    #+#             */
-/*   Updated: 2025/01/30 01:25:30 by ertugrullik      ###   ########.fr       */
+/*   Created: 2023/01/28 23:18:33 by yakdik            #+#    #+#             */
+/*   Updated: 2025/01/30 00:52:42 by ertugrullik      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#ifndef MINITALK_H
+# define MINITALK_H
 
-void	process_signal(int signal)
-{
-	static unsigned char	x;
-	static int				i;
+# include "libft/libft.h"
+# include <signal.h>
 
-	if (signal == SIGUSR1)
-	{
-		x = x | 1;
-	}
-	i++;
-	if (i == 8)
-	{
-		ft_printf("%c", x);
-		i = 0;
-		x = 0;
-	}
-	x = x << 1;
-}
+typedef int	t_pid;
 
-int main(void)
-{
-	ft_printf("Server started with PID: %d\n", getpid());
-	signal(SIGUSR1, process_signal);
-	signal(SIGUSR2, process_signal);
-	while (1)
-	{
-		pause();
-	}
-	return (0);
-}
+#endif
